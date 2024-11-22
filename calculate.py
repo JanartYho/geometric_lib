@@ -1,3 +1,13 @@
+import circle
+import square
+import triangle
+
+fig_modules = {
+    "circle": circle,
+    "square": square,
+    "triangle": triangle,
+}
+
 figs = ["circle", "square", "triangle"]
 funcs = ["perimeter", "area"]
 sizes = {
@@ -11,21 +21,22 @@ sizes = {
 
 
 def calc(fig, func, size):
-    assert fig in figs, "Invalid figure"
+    assert fig in fig_modules, "Invalid figure"
     assert func in funcs, "Invalid function"
 
     key = f"{fig}-{func}"
     args = sizes.get(key)
     assert args is not None
     assert len(size) == args
-
     assert all(s >= 0 for s in size)
 
     if fig == "triangle":
         a, b, c = size
-        assert a + b > c and a + c > b and b + c > a
+        assert a + b > c and a + c > b and b + c > a, "Invalid triangle sides"
 
-    result = eval(f"{fig}.{func}(*{size})")
+    module = fig_modules[fig]
+    func_to_call = getattr(module, func)
+    result = func_to_call(*size)
     return result
 
 
