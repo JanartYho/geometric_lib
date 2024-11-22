@@ -2,14 +2,12 @@ import math
 
 
 def area(r):
-    '''Функция принимает значение - радиус круга'''
+    if r < 0:
+        raise ValueError("Radius cannot be negative")
     return math.pi * r * r
-    '''Функция возвращает площадь круга'''
 
 
 def perimeter(r):
-    '''Функция принимает значение - радиус круга'''
+    if r < 0:
+        raise ValueError("Radius cannot be negative")
     return 2 * math.pi * r
-    '''Функция возвращает периметр круга'''
-
-
