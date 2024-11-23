@@ -54,7 +54,7 @@ class TestCalculate(unittest.TestCase):
             calc(fig, func, size)
 
     def test_wrong_func(self):
-        fig = "Circle"
+        fig = "circle"
         func = "diagonal"
         size = [1]
         with self.assertRaises(AssertionError):
@@ -71,28 +71,28 @@ class TestCalculate(unittest.TestCase):
         fig = "circle"
         func = "area"
         size = [-1]
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc(fig, func, size)
 
     def test_neg_size_square(self):
         fig = "square"
         func = "area"
         size = [-1]
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc(fig, func, size)
 
     def test_neg_size_triangle(self):
-        fig = "square"
+        fig = "triangle"
         func = "area"
         size = [-5, -12, -13]
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc(fig, func, size)
 
     def test_wrong_size_triangle(self):
         fig = "triangle"
         func = "area"
         size = [1, 2, 10]
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(ValueError):
             calc(fig, func, size)
 
 
