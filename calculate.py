@@ -28,11 +28,6 @@ def calc(fig, func, size):
     args = sizes.get(key)
     assert args is not None
     assert len(size) == args
-    assert all(s >= 0 for s in size)
-
-    if fig == "triangle":
-        a, b, c = size
-        assert a + b > c and a + c > b and b + c > a, "Invalid triangle sides"
 
     module = fig_modules[fig]
     func_to_call = getattr(module, func)
